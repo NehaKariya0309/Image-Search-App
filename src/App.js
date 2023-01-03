@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import Jumbutron from './components/Jumbutron';
+import SearchField from './components/SearchField';
+import Images from './components/Images'
+import useAxios from './Hooks/useAxios';
+import { useState } from 'react';
+import { createContext } from 'react';
+import React from 'react';
+export const ImageContext=createContext();
+
+
 
 function App() {
+  const [searchImage,setSearchImage]=useState("");
+  const {response,isLoading,error,fetchData} =useAxios(`https://api.unsplash.com/search/photos?page=1&query=office&per_page=30&client_id=F9y_nacwti27FraKcmFN7tsfDqlRAtTFBVZFvCp-N_s`);
+  console.log(response);
+  const info={
+    response,
+    isLoading,
+    error,
+    fetchData,
+    searchImage,
+    setSearchImage
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ImageContext.Provider value={info}>
+    <Jumbutron>
+      <SearchField/>
+      </Jumbutron>
+      <Images />
+    </ImageContext.Provider>
   );
 }
+
 
 export default App;
