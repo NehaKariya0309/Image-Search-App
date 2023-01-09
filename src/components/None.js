@@ -9,7 +9,7 @@ const None=()=>{
        <div className="text-center mt-1 font-bold text-2xl">Sorry! No Images Found</div>
         <figure className="none-img">
         {/* <img src="D:/parallax/img-search/img-app/public/confused.webp" /> */}
-        <img src={require('D:/parallax/img-search/img-app/src/components/confused.webp')} />
+        <img src={require('./confused.webp')} />
 
         </figure>
         
